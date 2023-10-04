@@ -1,0 +1,10 @@
+piVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  selector:
+    app: nginx
+  ports:
+  - port: 8082
+    targetPort: 80
