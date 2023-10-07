@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongodv-config
+immutable: false
+data:
+  username: admin
+  password: password
+  mongodb.conf: | 
+    storage:
+      dbPath: /data/configdb
+    replication:
+        replSetName: "rs0"
