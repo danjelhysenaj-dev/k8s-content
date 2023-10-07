@@ -16,7 +16,6 @@ spec:
       containers:
       - name: mongo
         image: mongo:4.0.0
-        args: ["--dbpath","/data/db"]
         env:
           - name: MONGO_INITDB_ROOT_USERNMAE
             value: "admin"
@@ -25,11 +24,19 @@ spec:
         command:
           - mongod
           - "--bind_ip_all"
-          - "--relSet"
-          - rs0
+          - --config=/etc/mongo/mongo.conf
         volumeMounts:
         - name: mongo-volume
           mountPath: /date/db
+        - name: mongodb-config
+          mountPath: /etc/mongo
+      volumes: 
+        - name: mongodb-config
+          configMap:
+            name: mongodb-config
+            items:
+              - key: mongodb.conf
+                path: mongodb.confsss
   volumeClaimTemplates:
   - metadata:
       name: mongo-volume
