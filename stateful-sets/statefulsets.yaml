@@ -13,6 +13,7 @@ spec:
       labels:
         app: mongo
     spec:
+      restartPolicy: Always
       containers:
       - name: mongo
         image: mongo:4.0.0
