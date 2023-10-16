@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: LimitRange
+metadata:
+  name: limit-range
+spec:
+  limits:
+  #  Limit range on Pod level
+    - type: Pod
+      min:
+        cpu: 50m
+        memory: 5Mi
+      max:
+        cpu: "2" 
+        memory: 2Gi
+  #  Limit range on Container level
+    - type: Container
+      defaultRequest:
+        cpu: 100m
+        memory: 10Mi
+      default: 
+        cpu: 200m
+        memory: 100Mi
+      min: 
+        cpu: 50m
+        memory: 5Mi
+      max: 
+        cpu: "1" 
+        memory: 1Gi
+      maxLimitRequestRatio:
+        cpu: "4" 
+        memory: 10Gi 
+    #  Limit range on PersistentVolumeClaim level
+    - type: PersistentVolumeClaim
+      min:
+        storage: 1Gi 
+      max: 
+        storage: 10Gi
