@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resource-demo
+spec:
+  containers:
+  - name: resources-demo
+    image: polinux/stress
+    command: ["stress"]
+    args: ["--cpu","2","--vm","--vm-bytes","1G","--vm-hang","1"]
+    resources:
+        limits:
+          memory: "10Gi"
+          cpu: "1"
+# To do stress test on the pod go checkout this page as reference -> linux.dle.net/man/1/stress
